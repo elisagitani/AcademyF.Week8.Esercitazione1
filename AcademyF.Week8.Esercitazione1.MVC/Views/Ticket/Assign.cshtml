@@ -1,0 +1,83 @@
+﻿@model AcademyF.Week8.Esercitazione1.MVC.Models.TicketAssignViewModel
+
+@{
+    ViewData["Title"] = "Assign";
+}
+
+<h1>Assign</h1>
+
+<h4>TicketAssignViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Assign">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label hidden asp-for="Id" class="control-label"></label>
+                <input hidden asp-for="Id" class="form-control" />
+                <span asp-validation-for="Id" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="CreationDate" class="control-label"></label>
+                <input hidden asp-for="CreationDate" class="form-control" />
+                <span asp-validation-for="CreationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Applicant" class="control-label"></label>
+                <input hidden asp-for="Applicant" class="form-control" />
+                <span asp-validation-for="Applicant" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Title" class="control-label"></label>
+                <input hidden asp-for="Title" class="form-control" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Description" class="control-label"></label>
+                <input hidden asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Priority" class="control-label"></label>
+                <input hidden asp-for="Priority" class="form-control" />
+                <span asp-validation-for="Priority" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="State" class="control-label"></label>
+                <input hidden asp-for="State" class="form-control" />
+                <span asp-validation-for="State" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="CategoryId" class="control-label"></label>
+                <input hidden asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TicketManager" class="control-label"></label>
+                <input required asp-for="TicketManager" class="form-control" />
+                <span asp-validation-for="TicketManager" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="ClosingDate" class="control-label"></label>
+                <input hidden asp-for="ClosingDate" class="form-control" />
+                <span asp-validation-for="ClosingDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label hidden asp-for="Note" class="control-label"></label>
+                <input hidden asp-for="Note" class="form-control" />
+                <span asp-validation-for="Note" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Assign" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

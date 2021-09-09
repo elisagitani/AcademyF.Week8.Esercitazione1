@@ -1,0 +1,132 @@
+﻿@model IEnumerable<AcademyF.Week8.Esercitazione1.MVC.Models.TicketListViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CreationDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Applicant)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Priority)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.State)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Note)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Applicant)
+                </td>
+                <td>
+                    @*@Html.DisplayFor(modelItem => item.Title)*@
+                    @Html.ActionLink(item.Title, "Details", new { id = item.Id })
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Priority)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.State)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Note)
+                </td>
+                <td>
+                    @Html.ActionLink("Assign", "Assign", new { id = item.Id }) |
+                    <a href="#" onclick="closeTicket(@item.Id); return false;">Close</a> |
+                    @*@Html.ActionLink("Close", "Close", new { id = item.Id })  |*@
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @*@Html.ActionLink("Details", "Details", new { id=item.Id}) |*@
+                    @*@Html.ActionLink("Delete", "Delete", new { id = item.Id }) |*@
+                    <a href="#" onclick="deleteTicket(@item.Id); return false;">Delete</a> |
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+
+    <script>
+        //javascript code
+        function closeTicket(ticketId) {
+            let confirmation = confirm("Are you sure you want to close Ticket #" + ticketId);
+
+            if (!confirmation)
+                return;
+
+            //cancellazione employee...
+            $.ajax({
+                type: 'GET',
+                url: `@Url.Action("CloseJS","Ticket")/${ticketId}`,
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {          //data è il valore restituito dalla funzione DeleteJS
+                    if (data) {
+                        location.href = "@Url.Action("Index","Ticket")" //Ricarico la pagina Index del controller Employee
+                    }
+                }
+
+            });
+
+        }
+    </script>
+
+    <script>
+        //javascript code
+        function deleteTicket(ticketId) {
+            let confirmation = confirm("Are you sure you want to delete Ticket #" + ticketId);
+
+            if (!confirmation)
+                return;
+
+            //cancellazione employee...
+            $.ajax({
+                type: 'GET',
+                url: `@Url.Action("DeleteJS","Ticket")/${ticketId}`,
+                contentType: 'application/json; charset=utf-8',
+                success: function (data) {          //data è il valore restituito dalla funzione DeleteJS
+                    if (data) {
+                        location.href = "@Url.Action("Index","Ticket")" //Ricarico la pagina Index del controller Employee
+                    }
+                }
+
+            });
+
+        }
+    </script>
+
+}

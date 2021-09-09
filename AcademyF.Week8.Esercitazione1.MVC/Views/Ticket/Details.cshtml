@@ -1,0 +1,96 @@
+﻿@model AcademyF.Week8.Esercitazione1.MVC.Models.TicketDetailsViewModel
+<div>
+    <h4>Ticket #@Model.Id</h4>
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <dl class="row">
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Id)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Id)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Applicant)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Applicant)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.CreationDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.CreationDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Title)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Title)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Priority)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Priority)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Category)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Category)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.TicketManager)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.TicketManager)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.ClosingDate)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.ClosingDate)
+                </dd>
+                <dt class="col-sm-2">
+                    @Html.DisplayNameFor(model => model.Note)
+                </dt>
+                <dd class="col-sm-10">
+                    @Html.DisplayFor(model => model.Note)
+
+                </dd>
+            </dl>
+        </div>
+        @if (Model.Note != 0)
+        {
+            <div class="col-6">
+                <div>
+                    <h3>Notes</h3>
+                    <ul>
+                        @foreach (var item in Model.Notes)
+                        {
+                            <li>[@item.CreationDate.ToString("yyyy-MM-dd") - @item.Text</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        }
+
+    </div>
+<div>
+    @Html.ActionLink("Add Note", "AddNote", new { id = Model.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
